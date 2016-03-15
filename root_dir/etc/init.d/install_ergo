@@ -23,8 +23,8 @@ wget -O -  http://packages.ergotelescope.org/ergo.gpg.key | apt-key add -
 
 #sets up ergo and unattended-upgrades
 apt-get update
-apt-get upgrade -y
-apt-get install -y ergo-telescope unattended-upgrades apt-listchanges;
+sleep 4
+apt-get install -y ergo-telescope unattended-upgrades apt-listchanges
 apt-get update
 
 #changes the password for the unit with the format password unit_id 
