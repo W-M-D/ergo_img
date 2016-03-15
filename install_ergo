@@ -37,4 +37,6 @@ echo "$UNIT_ID" > /etc/ERGO/unit_id
 mkdir -p /home/pi/.ssh
 cat /root/master_key >> /home/pi/.ssh/authorized_keys
 
+chmod 600 /etc/init.d/install_ergo
+update-rc.d install_ergo remove
 }
