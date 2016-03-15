@@ -3,11 +3,6 @@
 # Provides: install_ergo
 # Required-Start:
 # Required-Stop:
-# Default-Start: 3 
-# Default-Stop:
-# Short-Description: grabs keys and installs ergo
-# Description:
-### END INIT INFO
 
 do_start
 {
@@ -18,14 +13,14 @@ UNIT_ID="a_id"
 wget -O -  http://packages.ergotelescope.org/ergo.gpg.key | apt-key add - 
 
 #sets up ergo and unattended-upgrades
-apt-get update;
-apt-get upgrade -y;
+apt-get update
+apt-get upgrade -y
 apt-get install -y ergo-telescope unattended-upgrades apt-listchanges;
-apt-get update;
+apt-get update
 
-#changes the password for the unit with the format password_unit id 
-# eg password_555
-echo -e "$PASSWORD_$UNIT_ID\n$PASSWORD_$UNIT_ID" |(passwd pi)
+#changes the password for the unit with the format password unit_id 
+# eg password555
+echo -e "$PASSWORD$UNIT_ID\n$PASSWORD$UNIT_ID" |(passwd pi)
 echo "$UNIT_ID" > /etc/ERGO/unit_id
 
 #adds a key for admins. 
