@@ -1,16 +1,5 @@
-#!/bin/sh
-### BEGIN INIT INFO
-# Provides: install_ergo
-# Required-Start:
-# Required-Stop:
-# Default-Start: 3
-# Default-Stop:
-# Short-Description: Sets up ergo by installing the program and automatic updates
-# Description:
-### END INIT INFO
+#!/bin/bash
 
-do_start
-{
 PASSWORD="a_password"
 UNIT_ID="a_id" 
 while ! ping -q -c 1 -W 1 8.8.8.8 > /dev/null ; do
@@ -25,6 +14,7 @@ wget -O -  http://packages.ergotelescope.org/ergo.gpg.key | apt-key add -
 apt-get update
 sleep 4
 apt-get install -y ergo-telescope unattended-upgrades apt-listchanges
+apt-get -f install ergo-telescope
 apt-get update
 
 #changes the password for the unit with the format password unit_id 
@@ -34,8 +24,7 @@ echo "$UNIT_ID" > /etc/ERGO/unit_id
 
 #adds a key for admins. 
 mkdir -p /home/pi/.ssh
-cat /root/master_key >> /home/pi/.ssh/authorized_keys
+echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCy73F6b2D/BdSiWAVnTUnnhEYS1gohg1HdwKdUG30HPThfcAXPr/tcfQ6yBi4Hv1jecElyYhooSI8Tp0jI3UU1xoIl//ND8e0kzV0KPIJ3pwwzL4SEeLZ/OeXVivna19Rj0VjjpveYIIEVWMi4m6RyKT3rK6JGfnqhjVTcYu/4JiEPkWmsLUjdWani+CH2TmF1peGPvRuyjMQ0qAKdhNOBeb/RxOxJ1kUPz+UEvyiYE4EyLrz4N6YoonN+gKje8+vaeu/BgJToLYQu1qIz1mI3wws/ECOpir5ltSn/xsz4oATKKZPhcVdNnc4/BuFA86f5oVz7mUZ5faSagx+Z0Bz+eoWFY+K0puPqhDIh0xmZ3d642BXVQsagjq0bLF2tn2TbR4NB+BocYj/d4Zcj91G2yW1zNq8lCalkpaU500Oqf5AzBxtwR6RU1d49NdBv9gyrSWTCkGl8/sPyNBmldviIDKNfhXAJu1oqUq0Oi695m+pXgCARtPzlJ3d7jIHG5wmchMHwxgEAV3feFFjWye2OZiLUoFpHj1bfWnM7dYeUs/O1SMgz2OCxd2jysl+0UmffKgSjPEpHBDuPtdjGEqfIwO4eY+ePL2lmSyKudQx/0PkIHnH41qnOWWdisdcNo3tNozQpwvh6d4vO4aYwSVYpZgVfztTd4Wmrfq7WQtIopQ== 555' >> /home/pi/.ssh/authorized_keys
 
 chmod 600 /etc/init.d/install_ergo
 update-rc.d install_ergo remove
-}
