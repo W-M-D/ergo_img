@@ -22,6 +22,7 @@ mv /etc/apt/apt.conf.d/50unattended-upgrades.new /etc/apt/apt.conf.d/50unattende
 #changes the password for the unit with the format password unit_id 
 # eg password555
 echo -e "$PASSWORD$UNIT_ID\n$PASSWORD$UNIT_ID" |(passwd pi)
+mkdir -p /etc/ERGO/
 echo "$UNIT_ID" > /etc/ERGO/unit_id
 service ergo-telescope restart	
 
