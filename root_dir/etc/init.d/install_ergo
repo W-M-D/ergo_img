@@ -13,6 +13,10 @@ do_start
 {
 PASSWORD="a_password"
 UNIT_ID="a_id" 
+while ! ping -q -c 1 -W 1 8.8.8.8 > /dev/null ; do
+	sleep 10	
+done
+  
 
 #sets up apt sources
 wget -O -  http://packages.ergotelescope.org/ergo.gpg.key | apt-key add - 
