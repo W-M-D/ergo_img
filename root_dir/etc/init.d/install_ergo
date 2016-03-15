@@ -3,6 +3,11 @@
 # Provides: install_ergo
 # Required-Start:
 # Required-Stop:
+# Default-Start: 3
+# Default-Stop:
+# Short-Description: Sets up ergo by installing the program and automatic updates
+# Description:
+### END INIT INFO
 
 do_start
 {
