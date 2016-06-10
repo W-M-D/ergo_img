@@ -11,9 +11,6 @@
 
 do_start()
 {
-while ! ping -q -c 1 -W 1 8.8.8.8 > /dev/null ; do
-	sleep 10	
-done
 bash /usr/lib/raspi-config/install_ergo.sh &
 }
 
