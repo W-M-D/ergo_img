@@ -38,7 +38,7 @@ done
 write_img ()
 {
 for PATH in $DISK_PATHS;
-do (/bin/dd bs=1M if=/dev/zero of=$PATH &&  /bin/dd bs=1M if=$IMG_NAME of=$PATH ; ) &  
+do (/bin/dd if=/dev/zero | /usr/bin/pv | dd bs=1M of=$PATH &&  /bin/dd if=$IMG_NAME | /usr/bin/pv |dd bs=1M  of=$PATH ; ) &  
 done
 }
 
