@@ -2,7 +2,7 @@
 
 PASSWORD="a_password"
 UNIT_ID="a_id" 
-WGET_TIMER_MAX=50
+WGET_TIMER_MAX="50"
 
 #changes the password for the unit with the format password unit_id 
 # eg password555
@@ -23,11 +23,10 @@ while ! wget -O -  http://packages.ergotelescope.org/ergo.gpg.key  ; do
         let "WGET_TIMER %= $WGET_TIMER_MAX"
         sleep $WGET_TIMER
 done
-wget -O -  http://packages.ergotelescope.org/ergo.gpg.key | apt-key add - 
+wget -O - http://packages.ergotelescope.org/ergo.gpg.key | apt-key add - 
 
 #sets up ergo and unattended-upgrades
-if apt-get update
-sleep 4
+apt-get update
 apt-get install -y ergo-telescope unattended-upgrades apt-listchanges
 apt-get -fy install ergo-telescope
 apt-get update
