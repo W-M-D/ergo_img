@@ -26,15 +26,15 @@ while ! wget -O -  http://packages.ergotelescope.org/ergo.gpg.key  ; do
         let "WGET_TIMER %= $WGET_TIMER_MAX"
         sleep $WGET_TIMER
 done
-wget -O - http://packages.ergotelescope.org/ergo.gpg.key | apt-key add - 
+wget -O - http://packages.ergotelescope.org/ergo.gpg.key | apt-key add - &&
 
 #sets up ergo and unattended-upgrades
-apt-get update
-apt-get install -y ergo-telescope unattended-upgrades apt-listchanges
-apt-get -fy install ergo-telescope
-apt-get update
+apt-get update && 
+apt-get install -y ergo-telescope unattended-upgrades apt-listchanges && 
+apt-get -fy install ergo-telescope  
+apt-get update && 
 
-mv /etc/apt/apt.conf.d/50unattended-upgrades.new /etc/apt/apt.conf.d/50unattended-upgrades
+mv /etc/apt/apt.conf.d/50unattended-upgrades.new /etc/apt/apt.conf.d/50unattended-upgrades && 
 
 service ergo-telescope restart	
 echo "removing references of ttyAMA0 from /boot/cmdline.txt and backingup old cmdline.txt"
